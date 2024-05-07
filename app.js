@@ -175,27 +175,36 @@ const abi = [
 ];
 
 const contract = new web3.eth.Contract(abi, contractAddress);
+let accounts = [];
+let metamaskBtn = document.querySelector("#metamaskBtn");
+let voteBtn = document.querySelector("#voteBtn");
 console.log(contract);
-async function connectMetamask() {
-    //check metamask is installed
-    if (window.ethereum) {
-        // instantiate Web3 with the injected provider
-        const web3 = new Web3(window.ethereum);
 
-        //request user to connect accounts (Metamask will prompt)
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-        //get the connected accounts
-        const accounts = await web3.eth.getAccounts();
-
-        //show the first connected account in the react page
-    } else {
-        alert('Please download metamask');
-    }
-}
 
 window.onload = async function() {
-    await connectMetamask();
+    //await connectMetamask();
+    metamaskBtn.addEventListener("click",async function(){
+        //check metamask is installed
+        if (window.ethereum) {
+            // instantiate Web3 with the injected provider
+            const web3 = new Web3(window.ethereum);
+
+            //request user to connect accounts (Metamask will prompt)
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            //get the connected accounts
+            accounts = await web3.eth.getAccounts();
+            console.log(accounts.length);
+        } else {
+            alert('Please download metamask');
+        }
+    });
+
+    voteBtn.addEventListener("click", function() {
+        //обращение к контракту если все норм проголосовалось то:
+
+    })
+
     const owner = await contract.methods.getOwner().call().then(console.log);
     const candidatesCount = await contract.methods.getCandidatesCount().call();
     const votesCount = await contract.methods.getVotesCount().call();
@@ -218,8 +227,24 @@ window.onload = async function() {
 
     window.getCandidates = getCandidates;
 
+    const addCandidate = async () => {
+        const candidateName = document.getElementById('candidateName').value;
+        await contract.methods.addCandidate(candidateName).send({from: web3.eth.defaultAccount});
+        alert('Candidate added!');
+    };
+
+    window.addCandidate = addCandidate;
+
+    const vote = async () => {
+        const candidateId = document.getElementById('candidateId').value;
+        await contract.methods.vote(candidateId).send({from: web3.eth.defaultAccount});
+        alert('Voted!');
+    }
+
+    window.vote = vote;
+
     const endElections = async () => {
-        await contract.methods.endElections().send({ from: web3.eth.defaultAccount });
+        await contract.methods.endElections().send({from: web3.eth.defaultAccount});
         document.getElementById('electionsEnd').innerText = `Elections End: ${true}`;
         alert('Elections ended!');
     };
