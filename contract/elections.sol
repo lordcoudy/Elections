@@ -29,6 +29,11 @@ contract Voting {
         _;
     }
 
+    modifier anyVotes() {
+        require(votesCount > 0);
+        _;
+    }
+
     /**
      * @dev Конструктор, инициализирующий контракт.
      */
@@ -91,12 +96,30 @@ contract Voting {
         candidates[_candidateId].voteCount ++;
         votesCount ++;
     }
+    
+    /**
+     * @dev Функция для начала второго тура.
+     */
+    function startSecondTour() public restricted anyVotes {
+        minVotesId = 1;
+        minPercentage = 100;
+        for (uint i = 1; i <= candidatesCount; i++)
+        {
+            uint percentage = getPercentage(i);
+            if (percentage < minPercentage)
+            {
+                minPercentage = percentage;
+                minVotesId = i;
+            }
+        }
+        delete candidates[minVotesId];
+        candidatesCount--;
+    }
 
     /**
      * @dev Функция для завершения выборов.
      */
-    function endElections() public restricted {
-        require(votesCount > 0);
+    function endElections() public restricted anyVotes {
         electionsEnd = true;
     }
 
@@ -116,4 +139,15 @@ contract Voting {
         }
         return candidates[winnerId].name;
     }
+
+    /**
+     * @dev Функция для получения процента голосов у кандидата
+     * @param _candidateId ID кандидата
+     * @return Процент голосов у кандидата
+     */
+    function getPercentage(uint _candidateId) public view returns (uint) {
+        require(_candidateId > 0 && _candidateId <= candidatesCount);
+        return candidates[_candidateId].voteCount * 100 / votesCount;
+    }
+
 }
