@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.24;
-import "@openzeppelin/contracts/utils/Strings.sol";
-
+pragma solidity 0.8.13;
 /**
  * @title Голосование
  * @dev Реализует простую систему голосования.
@@ -96,13 +94,13 @@ contract Voting {
         candidates[_candidateId].voteCount ++;
         votesCount ++;
     }
-    
+
     /**
      * @dev Функция для начала второго тура.
      */
     function startSecondTour() public restricted anyVotes {
-        minVotesId = 1;
-        minPercentage = 100;
+        uint minVotesId = 1;
+        uint minPercentage = 100;
         for (uint i = 1; i <= candidatesCount; i++)
         {
             uint percentage = getPercentage(i);
@@ -149,5 +147,4 @@ contract Voting {
         require(_candidateId > 0 && _candidateId <= candidatesCount);
         return candidates[_candidateId].voteCount * 100 / votesCount;
     }
-
 }
