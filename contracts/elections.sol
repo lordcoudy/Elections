@@ -84,6 +84,16 @@ contract Voting {
     }
 
     /**
+    * @dev Функция для получения имени кандидата по ID.
+    * @param _id ID кандидата.
+    * @return Имя кандидата.
+    */
+    function getCandidate (uint _id) public view returns (string memory)
+    {
+        return candidates[_id].name;
+    }
+
+    /**
      * @dev Функция для голосования за кандидата.
      * @param _candidateId ID кандидата, за которого голосуют.
      */

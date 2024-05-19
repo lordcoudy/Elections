@@ -1,5 +1,5 @@
 const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
-const contractAddress = '0xdad969442f87fBac66B3De0Ab38F0b4c01D86A7A'; // Replace with your contract address
+const contractAddress = '0x2427c38B47A8eB36Baa563Ccb9bE40301E68652f'; // Replace with your contract address
 const abi = [
     {
         "inputs": [],
@@ -146,6 +146,26 @@ const abi = [
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_id",
+                "type": "uint256"
+            }
+        ],
+        "name": "getCandidate",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
     },
     {
         "inputs": [
