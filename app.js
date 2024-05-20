@@ -1,235 +1,235 @@
 const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
-const contractAddress = '0x2427c38B47A8eB36Baa563Ccb9bE40301E68652f'; // Replace with your contract address
+const contractAddress = '0x93b903441f7E1e6d9d1b6d8CE60F18bf5426D057'; // Replace with your contract address
 const abi = [
-    {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "candidates",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "internalType": "uint256",
-                "name": "voteCount",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "candidatesCount",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "votesCount",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getOwner",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getCandidatesCount",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getVotesCount",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getElectionsEnd",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "_name",
-                "type": "string"
-            }
-        ],
-        "name": "addCandidate",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "getCandidate",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_candidateId",
-                "type": "uint256"
-            }
-        ],
-        "name": "vote",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "hasVoted",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "startSecondTour",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "endElections",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getWinner",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_candidateId",
-                "type": "uint256"
-            }
-        ],
-        "name": "getPercentage",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    }
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "addCandidate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "endElections",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "startSecondTour",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "candidates",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "voteCount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "candidatesCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "getCandidate",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCandidatesCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getElectionsEnd",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getOwner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPercentage",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getVotesCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getWinner",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "hasVoted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "votesCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ];
 
 const contract = new web3.eth.Contract(abi, contractAddress);
@@ -240,15 +240,16 @@ let currentAccount;
 let candidatesBlock = document.querySelector("#candidatesBlock");
 let metamaskBtn = document.querySelector("#metamaskBtn");
 let voteBtn = document.querySelector("#voteBtn");
-console.log(contract);
 
 function showLoader() {
-    document.querySelector("body > div > div").style.opacity='0.6';
+    document.querySelector("body > div").style.opacity='0.6';
+    document.querySelector("body > div").querySelectorAll('button').forEach(el=>el.disabled=true)
     document.querySelector(".loader").style.display='block';
 }
 
 function disableLoader() {
-    document.querySelector("body > div > div").style.opacity='1';
+    document.querySelector("body > div").style.opacity='1';
+    document.querySelector("body > div").querySelectorAll('button').forEach(el=>el.disabled=false)
     document.querySelector(".loader").style.display='none';
 }
 
@@ -275,40 +276,77 @@ window.onload = async function() {
             if (isConnectedMetamask) {
                 metamaskBtn.disabled=true;
                 const owner = await contract.methods.getOwner().call();
+                const hasVoted = await contract.methods.hasVoted().call({from: currentAccount});
+                const isElectionEnd = await contract.methods.getElectionsEnd().call();
 
-                if (currentAccount.split('0x')[1].toUpperCase() == owner.split('0x')[1]) {
-                    document.querySelector("div.adminBlock").classList.remove('adminBlock')
-                    return;
-                }
+                if (!isElectionEnd) {
 
-                //Добавить проверку, что уже голосовал
+                    if (hasVoted) {
+                        document.querySelector("body > div > div > div > div.alert.alert-primary").style.display='block';
+                        return;
+                    }
 
-                const candidatesCount = await contract.methods.getCandidatesCount().call();
-                for (let i=1; i<=candidatesCount; i++) {
+                    //case admin
+                    if (currentAccount.split('0x')[1].toUpperCase() == owner.split('0x')[1].toUpperCase()) {
+                        document.querySelector("div.row.mb-3.adminBlock").style.display='block';
+                        document.querySelector("#addCandidateBtn").style.display='block';
+                        document.querySelector("#endElectionBtn").style.display='block';
+                        return;
+                    }
 
-                    candidate = await contract.methods.getCandidate(i).call();
-                    candidates.push({
-                        name: candidate,
-                        id: i
-                    })
-                    candidatesBlock.innerHTML+=
-                    `<div class='d-flex justify-content-between'>
-                        <p class='text-default fs-5 mb-0'>`+candidate+`</p><input type='checkbox' id="`+i+`">
-                    </div>`;
-                    document.querySelector("body > div > div > div > h2:nth-child(3)").style.display='block';
-                    voteBtn.style.display='block';
+                    const candidatesCount = await contract.methods.getCandidatesCount().call();
+                    for (let i=1; i<=candidatesCount; i++) {
 
-                    document.querySelector("#candidatesBlock").querySelectorAll('input').forEach(function(el){
-                        el.addEventListener("click",function(){
-                            if (el.checked) {
-                                document.querySelector("#candidatesBlock").querySelectorAll('input').forEach(function(el){
-                                    el.disabled=true;
-                                })
-                            }
-                            
+                        candidate = await contract.methods.getCandidate(i).call();
+                        candidatesBlock.innerHTML+=
+                        `<div class='d-flex justify-content-between'>
+                            <p class='text-default fs-5 mb-0'>`+candidate+`</p><input type='checkbox' id="`+i+`">
+                        </div>`;
+                        document.querySelector("body > div > div:nth-child(2) > div > h2:nth-child(5)").style.display='block';
+                        voteBtn.style.display='block';
+
+                        document.querySelector("#candidatesBlock").querySelectorAll('input').forEach(function(el){
+                            el.addEventListener("click",function(){
+                                if (el.checked) {
+                                    document.querySelector("#candidatesBlock").querySelectorAll('input').forEach(function(el){
+                                        el.disabled=true;
+                                    })
+                                }
+                                
+                            })
                         })
-                    })
 
+                    }
+
+                } else {
+
+                    document.querySelector("#electionEndedMsg").style.display='block';
+                    const winner = await contract.methods.getWinner().call();
+                    document.querySelector("#electionWinnerMsg").innerHTML+=winner;
+                    document.querySelector("#electionWinnerMsg").style.display='block';
+                    metamaskBtn.disabled=true;
+
+                    const candidatesCount = await contract.methods.getCandidatesCount().call();
+                    candidatesBlock.innerHTML+=
+                        `<h3 style="text-align:center;">Results</h3>`;
+                    for (let i=1; i<=candidatesCount; i++) {
+
+                        candidate = await contract.methods.getCandidate(i).call();
+                        percent = await contract.methods.getPercentage(i).call();
+
+                        candidatesBlock.innerHTML+=
+                        `<div class='d-flex justify-content-center'>
+                            <p class='text-default fs-5 mb-0'>`+candidate+` - `+percent+` %</p>
+                        </div>`;
+
+                    }
+
+                    //case admin
+                    if (currentAccount.split('0x')[1].toUpperCase() == owner.split('0x')[1].toUpperCase()) {
+                        document.querySelector("div.row.mb-3.adminBlock").style.display='block';
+                        document.querySelector("#startSecondBtn").style.display='block';
+                        return;
+                    }
                 }
             }
             
@@ -317,6 +355,8 @@ window.onload = async function() {
         }
     });
 
+
+    //Vote
     voteBtn.addEventListener("click", function() {
         
         if (isConnectedMetamask) {
@@ -347,55 +387,73 @@ window.onload = async function() {
 
     })
 
+    //addCandidateBtn
+    document.querySelector("#addCandidateBtn").addEventListener('click',function() {
+        document.querySelector("#addCandidateInptGroup").style.display='flex'; 
+        document.querySelector("#addCandidateInptGroup").classList.add("animate__animated");
+        document.querySelector("#addCandidateInptGroup").classList.add("animate__fadeIn");
+    })
+
+    //addCandidate (blockchain)
+    document.querySelector("#enterCandidateBtn").addEventListener('click',function() {
+        let candidateName = document.querySelector("#candidateNameInpt").value;
+        if (candidateName != '') {
+            showLoader();
+            contract.methods.addCandidate(candidateName).send({from: currentAccount, gas: 200000})
+                        .on('transactionHash', function(hash){
+                            // Когда транзакция отправлена, вы можете выполнить дополнительные действия
+                            console.log('Transaction hash:', hash);
+                        })
+                    .on('confirmation', function(confirmationNumber, receipt){
+                            // Когда транзакция подтверждена, вы можете выполнить дополнительные действия
+                            disableLoader();
+                            console.log('Confirmation number:', confirmationNumber);
+                        })
+                    .on('error', function(err){
+                            disableLoader();
+                            console.log(err);
+                    })
+        }
+    })
+
+    //endElection
+    document.querySelector("#endElectionBtn").addEventListener('click',function(){
+        showLoader();
+        contract.methods.endElections().send({from: currentAccount, gas: 200000})
+                        .on('transactionHash', function(hash){
+                            // Когда транзакция отправлена, вы можете выполнить дополнительные действия
+                            console.log('Transaction hash:', hash);
+                        })
+                    .on('confirmation', function(confirmationNumber, receipt){
+                            // Когда транзакция подтверждена, вы можете выполнить дополнительные действия
+                            disableLoader();
+                            window.location.reload();
+                            console.log('Confirmation number:', confirmationNumber);
+                        })
+                    .on('error', function(err){
+                            disableLoader();
+                            console.log(err);
+                    })
+    })
     
-    const votesCount = await contract.methods.getVotesCount().call();
-    const electionsEnd = await contract.methods.getElectionsEnd().call();
+    //startSecondTour
+    document.querySelector("#startSecondBtn").addEventListener('click',function() {
+        showLoader();
+        contract.methods.startSecondTour().send({from: currentAccount, gas: 200000})
+                        .on('transactionHash', function(hash){
+                            // Когда транзакция отправлена, вы можете выполнить дополнительные действия
+                            console.log('Transaction hash:', hash);
+                        })
+                    .on('confirmation', function(confirmationNumber, receipt){
+                            // Когда транзакция подтверждена, вы можете выполнить дополнительные действия
+                            disableLoader();
+                            //window.location.reload();
+                            console.log('Confirmation number:', confirmationNumber);
+                        })
+                    .on('error', function(err){
+                            disableLoader();
+                            console.log(err);
+                    })
+    })
 
-    // document.getElementById('owner').innerText = `Owner: ${owner}`;
-    // document.getElementById('candidatesCount').innerText = `Candidates Count: ${candidatesCount}`;
-    // document.getElementById('votesCount').innerText = `Votes Count: ${votesCount}`;
-    // document.getElementById('electionsEnd').innerText = `Elections End: ${electionsEnd}`;
-
-    // const getCandidates = async () => {
-    //     const candidatesDiv = document.getElementById('candidates');
-    //     candidatesDiv.innerHTML = ''; // Clear previous candidates
-
-    //     for (let i = 1; i <= candidatesCount; i++) {
-    //         const candidate = await contract.methods.candidates(i).call();
-    //         candidatesDiv.innerHTML += `<div>Candidate ${i}: ${candidate.name} - Votes: ${candidate.voteCount}</div>`;
-    //     }
-    // };
-
-    // window.getCandidates = getCandidates;
-
-    // const addCandidate = async () => {
-    //     const candidateName = document.getElementById('candidateName').value;
-    //     await contract.methods.addCandidate(candidateName).send({from: web3.eth.defaultAccount});
-    //     alert('Candidate added!');
-    // };
-
-    // window.addCandidate = addCandidate;
-
-    // const vote = async () => {
-    //     const candidateId = document.getElementById('candidateId').value;
-    //     await contract.methods.vote(candidateId).send({from: web3.eth.defaultAccount});
-    //     alert('Voted!');
-    // }
-
-    // window.vote = vote;
-
-    // const endElections = async () => {
-    //     await contract.methods.endElections().send({from: web3.eth.defaultAccount});
-    //     document.getElementById('electionsEnd').innerText = `Elections End: ${true}`;
-    //     alert('Elections ended!');
-    // };
-
-    // window.endElections = endElections;
-
-    // const getWinner = async () => {
-    //     const winner = await contract.methods.getWinner().call();
-    //     document.getElementById('winner').innerText = `Winner: ${winner}`;
-    // };
-
-    // window.getWinner = getWinner;
 };
