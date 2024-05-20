@@ -105,6 +105,10 @@ contract Voting {
         votesCount ++;
     }
 
+    function hasVoted() public view returns (bool) {
+        return voters[msg.sender];
+    }
+
     /**
      * @dev Функция для начала второго тура.
      */
