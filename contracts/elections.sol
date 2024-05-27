@@ -17,9 +17,13 @@ contract Voting {
     uint public candidatesCount; // Общее количество кандидатов
 
     mapping(address => bool) private voters; // Сопоставление для отслеживания, голосовал ли уже адрес
+    address[] private votersAddress;
     uint public votesCount = 0; // Общее количество отданных голосов
 
     bool electionsEnd = false; // Флаг, указывающий, закончились ли выборы
+
+    uint[] private minVotesId;
+    mapping (uint => uint) minPercentages;
 
     // Модификатор для ограничения доступа к функции владельцем контракта
     modifier restricted() {
@@ -100,6 +104,7 @@ contract Voting {
     function vote (uint _candidateId) public {
         require(!voters[msg.sender]);
         require(_candidateId > 0 && _candidateId <= candidatesCount);
+        votersAddress.push(msg.sender);
         voters[msg.sender] = true;
         candidates[_candidateId].voteCount ++;
         votesCount ++;
@@ -113,19 +118,40 @@ contract Voting {
      * @dev Функция для начала второго тура.
      */
     function startSecondTour() public restricted anyVotes {
-        uint minVotesId = 1;
+        minVotesId.push(1);
         uint minPercentage = 100;
+        minPercentages[0] = minPercentage;
         for (uint i = 1; i <= candidatesCount; i++)
         {
             uint percentage = getPercentage(i);
             if (percentage < minPercentage)
             {
                 minPercentage = percentage;
-                minVotesId = i;
+                minVotesId[0] = i;
+                minPercentages[0] = minPercentage;
+            }
+            else if (percentage == minPercentage)
+            {
+                minVotesId.push(i);
+                uint j = 1;
+                minPercentages[j] = minPercentage;
+                j++;
             }
         }
-        delete candidates[minVotesId];
-        candidatesCount--;
+        for (uint i = 0; i < minVotesId.length; i++)
+        {
+            if (minPercentages[0] == minPercentages[i])
+            {
+                delete candidates[minVotesId[i]];
+                candidatesCount--;
+            }
+        }
+        for (uint i = 0; i < votersAddress.length; i++)
+        {
+            voters[votersAddress[i]] = false;
+            votersAddress.pop();
+        }
+        electionsEnd = false;
     }
 
     /**
